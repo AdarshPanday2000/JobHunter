@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     email : {
         type : String,
         required : [true, 'Please provide you email'],
-        validator: [validator.isEmail, 'Please provide a valid email']
+        validate: [validator.isEmail, 'Please provide a valid email']
     },
     phone : {
         type: Number,
@@ -23,7 +23,8 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : [true, 'Please provide your password'],
         minLength: [8, 'Password most contain atleast 8 characters'],
-        maxLength: [32, 'Password connot exceed 32 characters']
+        maxLength: [32, 'Password connot exceed 32 characters'],
+        select : false
     },
     role : {
         type : String,

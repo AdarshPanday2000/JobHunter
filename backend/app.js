@@ -43,6 +43,5 @@ app.use(errorMiddleware)
 export default app;
 
 
-
 // dotenv: This module loads environment variables from a .env file into process.env. This is useful for managing configuration variables outside your code, like API keys and database connection strings.
 // cors: CORS stands for Cross-Origin Resource Sharing. This module allows your server to handle requests from different origins (domains). It's often used when your frontend (client) and backend (server) are on different domains.
