@@ -27,7 +27,7 @@ function Navbar() {
 
   return (
     <nav className={`bg-[#18191c] px-[20px] ${isAuthorized ? "block" : "hidden"}`}>
-      <div className="max-w-[1500px] min-w-[1500px] mx-auto flex justify-between">
+      <div className="max-w-[1200px] min-w-[1000px] mx-auto flex justify-between">
         <div className="w-[120px] h-[120px]">
           <img className="w-full h-full" src="/JobZee-logos__white.png" alt="logo" />
         </div>

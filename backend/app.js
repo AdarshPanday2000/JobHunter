@@ -24,7 +24,6 @@ app.use(
 app.use(cookieParser());
 app.use(express.json())  //only parses JSON data and leave rest data
 app.use(express.urlencoded({ extended: true }));  // it converts the provided string into JSON format.
-
 app.use(fileUpload({
     useTempFiles :  true,
     tempFileDir  : '/tmp/'

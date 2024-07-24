@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../../main'
+import { Navigate } from 'react-router-dom';
+import HeroSection from './HeroSection';
+import HowItWorks from './HowItWorks';
+import PopularCategories from './PopularCategories';
+import PopularCompanies from './PopularCompanies';
 
 function Home() {
+
+  const { isAuthorized } = useContext(Context);
+  if(!isAuthorized){
+    return <Navigate to={'/login'}/>
+  }
+
+
   return (
-    <div>Home</div>
+    <section>
+      <HeroSection />
+      <HowItWorks />
+      <PopularCategories/>
+      <PopularCompanies />
+    </section>
   )
 }
 

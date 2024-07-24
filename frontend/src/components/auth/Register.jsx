@@ -44,7 +44,7 @@ const Register = () => {
     }
   };
 
-  console.log(isAuthorized)
+  //console.log(isAuthorized)
   if (isAuthorized) {
     return <Navigate to={"/"} />;
   }
