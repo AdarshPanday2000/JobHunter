@@ -10,4 +10,5 @@ router.get('/logout', isAuthorized, logout)
 router.get('/getUser', isAuthorized, getUser)
 
 
+
 export default router;
