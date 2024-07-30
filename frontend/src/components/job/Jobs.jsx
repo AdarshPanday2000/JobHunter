@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
-  const { isAutorized } = useContext(Context);
+  const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function Jobs() {
       });
   }, []);
 
-  if (!isAutorized) {
+  if (!isAuthorized) {
     navigateTo('/login');
   }
 

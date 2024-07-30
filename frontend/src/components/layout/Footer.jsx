@@ -12,7 +12,7 @@ const Footer = () => {
         isAuthorized ? "bg-[#18191c] flex justify-between p-[25px] lg:px-[120px] items-center" : "hidden"
       }`}>
       <div className="flex gap-[12px] text-[16px] text-[#f1f3f6]">
-        &copy; All Rights Reserved By CodeWithZeeshu.
+        &copy; All Rights Reserved By Adarsh
       </div>
       <div className="flex gap-[12px] text-[20px] text-[#f1f3f6]">
         <Link

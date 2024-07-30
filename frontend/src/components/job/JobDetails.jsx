@@ -8,7 +8,7 @@ function JobDetails() {
   const [job, setJob] = useState({});
   const navigateTo = useNavigate();
 
-  const { isAutorized } = useContext(Context);
+  const { isAuthorized,user } = useContext(Context);
 
   useEffect(() => {
     axios.get(`http://localhost:4000/api/v1/job/${id}`, { withCredentials: true })
@@ -20,15 +20,16 @@ function JobDetails() {
       });
   }, [id]);
 
-  if (!isAutorized) {
+
+  if (!isAuthorized) {
     navigateTo('/login');
   }
 
   return (
-    <div className="bg-gray-100 p-12">
+    <div className="bg-gray-100 p-10">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         <h3 className="text-2xl font-bold">Job Details</h3>
-        <div className="w-full min-h-[767px] flex flex-col gap-6 justify-center p-12">
+        <div className="w-full min-h-[500px] flex flex-col gap-6 justify-center mt-5 pl-12 pb-12">
           <p className="font-bold text-green-800">
             Title: <span className="font-normal text-black">{job.title}</span>
           </p>

@@ -30,8 +30,7 @@ const PostJob = () => {
       setSalaryTo("");
       setFixedSalary("");
     }
-    await axios
-      .post(
+    await axios.post(
         "http://localhost:4000/api/v1/job/postJob",
         fixedSalary.length >= 4
           ? {
@@ -72,7 +71,8 @@ const PostJob = () => {
   if (!isAuthorized || (user && user.role !== "Employer")) {
     navigateTo("/");
   }
-
+ console.log(salaryType)
+ 
   return (
     <>
       <div className="bg-gray-100 p-12 min-h-[670px] flex items-center">

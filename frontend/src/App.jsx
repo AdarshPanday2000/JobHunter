@@ -19,7 +19,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
 
-  const { isAutorized, setIsAuthorized, setUser } = useContext(Context);
+  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
 
   useEffect(() => {
      const fetchUser = async () => {
@@ -32,7 +32,7 @@ function App() {
       }
      }
      fetchUser()
-  }, [isAutorized])
+  }, [isAuthorized])
 
   return (
     <Router>

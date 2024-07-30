@@ -1,77 +1,67 @@
-import React, {useContext, useState} from 'react'
-import { Context } from '../../main';
-import { Link, useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast';
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../../main";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-function Navbar() {
-  const [show , setShow] = useState(false);
-
+const Navbar = () => {
+  const [show, setShow] = useState(false);
   const { isAuthorized, setIsAuthorized, user } = useContext(Context);
   const navigateTo = useNavigate();
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/user/logout", { withCredentials : true });
+      const response = await axios.get(
+        "http://localhost:4000/api/v1/user/logout",
+        {
+          withCredentials: true,
+        }
+      );
       toast.success(response.data.message);
       setIsAuthorized(false);
-      navigateTo('/login')
-
+      navigateTo("/login");
     } catch (error) {
-        toast.error(error.response.data.message)
-        setIsAuthorized(true)
+     toast.error(error.response.data.message), setIsAuthorized(true);
     }
-  }
-
-
+  };
 
   return (
-    <nav className={`bg-[#18191c] px-[20px] ${isAuthorized ? "block" : "hidden"}`}>
-      <div className="max-w-[1200px] min-w-[1000px] mx-auto flex justify-between">
+    <nav className={`bg-gray-800 ${isAuthorized ? "block" : "hidden"}`}>
+      <div className="container mx-auto flex justify-between items-center max-w-[1200px] min-w-[1000px]">
         <div className="w-[120px] h-[120px]">
-          <img className="w-full h-full" src="/JobZee-logos__white.png" alt="logo" />
+          <img src="/JobZee-logos__white.png" alt="logo" className="w-full h-full" />
         </div>
-        <ul className={`menu ${show ? "fixed top-[120px] left-0 bg-[#f1f3f6] w-[400px] flex flex-col h-full justify-center gap-[30px] items-start pl-[25px] shadow-xl" : "hidden lg:flex lg:gap-[25px] lg:items-center"}`}>
+        <ul className={`flex gap-6 items-center ${!show ? "flex" : "hidden"} md:flex md:static md:w-auto md:bg-transparent md:shadow-none`}>
           <li>
-            <Link className="text-[#f1f3f6] text-[20px] font-light relative" to={"/"} onClick={() => setShow(false)}>
-              HOME
-            </Link>
+            <Link to={"/"} onClick={() => setShow(false)} className="text-gray-200 text-xl font-light relative hover:text-green-500 transition-all duration-300">HOME</Link>
           </li>
           <li>
-            <Link className="text-[#f1f3f6] text-[20px] font-light relative" to={"/job/getall"} onClick={() => setShow(false)}>
-              ALL JOBS
-            </Link>
+            <Link to={"/job/getall"} onClick={() => setShow(false)} className="text-gray-200 text-xl font-light relative hover:text-green-500 transition-all duration-300">ALL JOBS</Link>
           </li>
           <li>
-            <Link className="text-[#f1f3f6] text-[20px] font-light relative" to={"/applications/me"} onClick={() => setShow(false)}>
+            <Link to={"/application/me"} onClick={() => setShow(false)} className="text-gray-200 text-xl font-light relative hover:text-green-500 transition-all duration-300">
               {user && user.role === "Employer" ? "APPLICANT'S APPLICATIONS" : "MY APPLICATIONS"}
             </Link>
           </li>
           {user && user.role === "Employer" && (
             <>
               <li>
-                <Link className="text-[#f1f3f6] text-[20px] font-light relative" to={"/job/post"} onClick={() => setShow(false)}>
-                  POST NEW JOB
-                </Link>
+                <Link to={"/job/post"} onClick={() => setShow(false)} className="text-gray-200 text-xl font-light relative hover:text-green-500 transition-all duration-300">POST NEW JOB</Link>
               </li>
               <li>
-                <Link className="text-[#f1f3f6] text-[20px] font-light relative" to={"/job/me"} onClick={() => setShow(false)}>
-                  VIEW YOUR JOBS
-                </Link>
+                <Link to={"/job/me"} onClick={() => setShow(false)} className="text-gray-200 text-xl font-light relative hover:text-green-500 transition-all duration-300">VIEW YOUR JOBS</Link>
               </li>
             </>
           )}
-          <button className="text-[#f1f3f6] text-[20px] font-light relative py-[7px] border border-[#f1f3f6] bg-transparent hover:bg-[#184235] hover:font-medium transition-all cursor-pointer" onClick={handleLogout}>
-            LOGOUT
-          </button>
+          <button onClick={handleLogout} className="h-auto px-4 py-2 border border-gray-200 text-gray-200 bg-transparent text-xl font-light hover:bg-green-800 transition-all duration-300 cursor-pointer">LOGOUT</button>
         </ul>
-        <div className="lg:hidden text-[#f1f3f6] text-[35px]">
-          <GiHamburgerMenu onClick={() => setShow(!show)} />
+        <div className="hamburger md:hidden">
+          <GiHamburgerMenu onClick={() => setShow(!show)} className="text-3xl text-gray-200" />
         </div>
       </div>
-    </nav>
+    </nav>  
   );
 };
 
-
-export default Navbar
+export default Navbar;
