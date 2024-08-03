@@ -47,8 +47,8 @@ const Login = () => {
       <section className="flex min-w-full lg:min-w-[1000px] max-w-[1000px] mx-auto min-h-screen">
         <div className="flex-1 flex flex-col justify-center bg-[#2C3333] p-5">
           <div className="flex flex-col gap-4 text-center mb-8">
-            {/* <img src="https://cdnb.artstation.com/p/assets/images/images/017/185/697/large/dim-gray-80.jpg?1554965451" alt="logo" className="w-72 h-28 mx-auto " /> */}
-            <h3 className="text-3xl font-semibold mt-2">Login to your account</h3>
+            <h1 className="text-4xl font-bold ">JobHunter</h1>
+            <h3 className="text-2xl font-semibold mt-2">Login to your account</h3>
           </div>
           <form className="flex flex-col gap-3">
             <div className="flex flex-col gap-2">

@@ -27,12 +27,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`bg-gray-800 ${isAuthorized ? "block" : "hidden"}`}>
-      <div className="container mx-auto flex justify-between items-center max-w-[1200px] min-w-[1000px]">
-        <div className="w-[120px] h-[120px]">
-          <img src="/JobZee-logos__white.png" alt="logo" className="w-full h-full" />
+    <nav className={`bg-gray-800 p-8 ${isAuthorized ? "block" : "hidden"}`}>
+      <div className="container mx-auto flex justify-between items-center max-w-[1200px]">
+        <div className="w-[100px] h-auto">
+          <h1 className="text-3xl font-semibold text-white pb-3 md:mt-3 hidden sm:block">JobHunter</h1>
         </div>
-        <ul className={`flex gap-6 items-center ${!show ? "flex" : "hidden"} md:flex md:static md:w-auto md:bg-transparent md:shadow-none`}>
+        <ul className={`flex flex-col lg:flex-row gap-6 items-center ${show ? "block" : "hidden"} lg:flex`}>
           <li>
             <Link to={"/"} onClick={() => setShow(false)} className="text-gray-200 text-xl font-light relative hover:text-green-500 transition-all duration-300">HOME</Link>
           </li>
@@ -56,7 +56,7 @@ const Navbar = () => {
           )}
           <button onClick={handleLogout} className="h-auto px-4 py-2 border border-gray-200 text-gray-200 bg-transparent text-xl font-light hover:bg-green-800 transition-all duration-300 cursor-pointer">LOGOUT</button>
         </ul>
-        <div className="hamburger md:hidden">
+        <div className="lg:hidden">
           <GiHamburgerMenu onClick={() => setShow(!show)} className="text-3xl text-gray-200" />
         </div>
       </div>
