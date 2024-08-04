@@ -16,6 +16,8 @@ import axios from 'axios';
 import { Toaster } from 'react-hot-toast'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+// axios.defaults.withCredentials = true; // Enable sending cookies with all requests
+
 function App() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
