@@ -56,7 +56,7 @@ export const login = catchAsyncError(async(req,res,next) => {
 
 
 export const logout = catchAsyncError(async(req,res,next) => {
-    console.log(    `running logging out`)
+    console.log(`running logging out`)
     res.status(201).cookie('token', '', {
         httpOnly : true,
         expires : new Date(Date.now())
