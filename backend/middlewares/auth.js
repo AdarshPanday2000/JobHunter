@@ -4,15 +4,41 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/userSchema.js';
 
 
-export const isAuthorized = catchAsyncError(async(req,res,next) => {
+// export const isAuthorized = catchAsyncError(async(req,res,next) => {
+//     const { token } = req.cookies;
+    
+//     if(!token){
+//         console.log('Token not found in cookies');
+//         return next(new ErrorHandler('User not authorized', 400))
+//     }
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+//     req.user = await User.findById(decoded.id);
+
+//     next()
+// })
+
+export const isAuthorized = catchAsyncError(async (req, res, next) => {
     const { token } = req.cookies;
-    console.log(token)
-    if(!token){
-        return next(new ErrorHandler('User not authorized', 400))
+  
+    if (!token) {
+      console.log('Token not found in cookies');
+      return next(new ErrorHandler('User not authorized', 400));
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-
-    req.user = await User.findById(decoded.id);
-
-    next()
-})
+  
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      req.user = await User.findById(decoded.id);
+  
+      if (!req.user) {
+        console.log('User not found for given token');
+        return next(new ErrorHandler('User not authorized', 400));
+      }
+  
+      next();
+    } catch (error) {
+      console.log('Error verifying token:', error);
+      return next(new ErrorHandler('User not authorized', 400));
+    }
+  });
+  

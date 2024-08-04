@@ -16,6 +16,8 @@ const PostJob = () => {
   const [fixedSalary, setFixedSalary] = useState("");
   const [salaryType, setSalaryType] = useState("default");
 
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+
   const { isAuthorized, user } = useContext(Context);
 
   const handleJobPost = async (e) => {
@@ -31,7 +33,7 @@ const PostJob = () => {
       setFixedSalary("");
     }
     await axios.post(
-        "http://localhost:4000/api/v1/job/postJob",
+        `${baseUrl}/api/v1/job/postJob`,
         fixedSalary.length >= 4
           ? {
               title,

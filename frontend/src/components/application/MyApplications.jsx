@@ -10,6 +10,7 @@ const MyApplications = () => {
   const [applications, setApplications] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [resumeImageUrl, setResumeImageUrl] = useState("");
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   const navigateTo = useNavigate();
 
@@ -17,7 +18,7 @@ const MyApplications = () => {
     try {
       if (user && user.role === "Employer") {
         axios
-          .get("http://localhost:4000/api/v1/application/employer/getall", {
+          .get(`${baseUrl}/api/v1/application/employer/getall`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -25,7 +26,7 @@ const MyApplications = () => {
           });
       } else {
         axios
-          .get("http://localhost:4000/api/v1/application/jobseeker/getall", {
+          .get(`${baseUrl}/api/v1/application/jobseeker/getall`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -44,7 +45,7 @@ const MyApplications = () => {
 
   const deleteApplication = (id) => {
     axios
-      .delete(`http://localhost:4000/api/v1/application/delete/${id}`, {
+      .delete(`${baseUrl}/api/v1/application/delete/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

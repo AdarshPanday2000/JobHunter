@@ -10,14 +10,14 @@ const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   const [editingMode, setEditingMode] = useState(null);
   const { isAuthorized, user } = useContext(Context);
-
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const navigateTo = useNavigate();
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/job/getmyjobs",
+          `${baseUrl}/api/v1/job/getmyjobs`,
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
@@ -43,7 +43,7 @@ const MyJobs = () => {
 
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
-    await axios.put(`http://localhost:4000/api/v1/job/updateJob/${jobId}`, updatedJob, {
+    await axios.put(`${baseUrl}/api/v1/job/updateJob/${jobId}`, updatedJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -56,7 +56,7 @@ const MyJobs = () => {
   };
 
   const handleDeleteJob = async (jobId) => {
-    await axios.delete(`http://localhost:4000/api/v1/job/deleteJob/${jobId}`, {
+    await axios.delete(`${baseUrl}/api/v1/job/deleteJob/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {

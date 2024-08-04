@@ -16,15 +16,14 @@ import axios from 'axios';
 import { Toaster } from 'react-hot-toast'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-
 function App() {
-
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
 
   useEffect(() => {
      const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/user/getUser" , {withCredentials : true})
+        const response = await axios.get(`${baseUrl}/api/v1/user/getUser` , {withCredentials : true})
         setUser(response.data.user);
         setIsAuthorized(true)
       } catch (error) {

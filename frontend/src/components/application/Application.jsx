@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
 
 const Application = () => {
-  
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
@@ -37,7 +37,7 @@ const Application = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/application/postApplication",
+        `${baseUrl}/api/v1/application/postApplication`,
         formData,
         {
           withCredentials: true,

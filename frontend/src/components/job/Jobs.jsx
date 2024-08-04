@@ -7,9 +7,10 @@ function Jobs() {
   const [jobs, setJobs] = useState([]);
   const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/v1/job/getAllJobs', { withCredentials: true })
+    axios.get(`${baseUrl}/api/v1/job/getAllJobs`, { withCredentials: true })
       .then((res) => {
         setJobs(res.data);
       })

@@ -7,11 +7,11 @@ function JobDetails() {
   const { id } = useParams(); // coming from app.jsx jobs params, we have named id there
   const [job, setJob] = useState({});
   const navigateTo = useNavigate();
-
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const { isAuthorized,user } = useContext(Context);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/v1/job/${id}`, { withCredentials: true })
+    axios.get(`${baseUrl}/api/v1/job/${id}`, { withCredentials: true })
       .then(res => {
         setJob(res.data.job);
       })
