@@ -55,14 +55,16 @@ export const login = catchAsyncError(async(req,res,next) => {
 })
 
 
-export const logout = catchAsyncError(async(req,res,next) => {
-    res.status(201).cookie('token', '', {
-        httpOnly : true,
-        expires : new Date(Date.now())
+export const logout = catchAsyncError(async (req, res, next) => {
+    res.status(200).cookie('token', '', {
+        httpOnly: true,
+        expires: new Date(Date.now()),
+        sameSite: 'none',
+        secure: true // Ensure this matches your production environment requirements
     }).json({
-        success : true,
-        message : 'User logged out'
-    })
+        success: true,
+        message: 'User logged out'
+    });
 });
 
 
