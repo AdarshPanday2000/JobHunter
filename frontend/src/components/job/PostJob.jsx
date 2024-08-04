@@ -73,7 +73,7 @@ const PostJob = () => {
   if (!isAuthorized || (user && user.role !== "Employer")) {
     navigateTo("/");
   }
- console.log(salaryType)
+
  
   return (
     <>
